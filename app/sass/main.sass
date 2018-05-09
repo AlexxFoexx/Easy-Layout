@@ -1,0 +1,35 @@
+@import "var"
+@import "fonts"
+@import "_mixins/all-mixins"
+  
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  &:after
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+  &:before
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+  min-width: 320px
+  position: relative
+  line-height: 1.65
+  overflow-x: hidden
+  +font-full("OpenSansLight", 16px)
+  color: $text
+
+.text-center
+  text-align: center
+
+.resp-img
+  width: 100%
+  height: auto
+
+
+
+@import "media"

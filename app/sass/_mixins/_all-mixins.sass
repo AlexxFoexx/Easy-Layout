@@ -1,0 +1,69 @@
+
+@mixin font-full($font-family, $font-size, $font-weight:normal)
+  font-family: $font-family
+  font-size: $font-size
+  font-weight: $font-weight
+
+@mixin center-absolute($width, $height)
+  position: absolute
+  top: 50%
+  left: 50%
+  width: $width
+  height: $height
+  margin-top: -$width / 2
+  margin-left: -$height / 2
+
+@mixin line-h($w, $h, $color)
+  &:after
+    content: ""
+    display: block
+    width: $w
+    height: $h
+    margin: 0 auto
+    background-color: $color
+
+@mixin triangle($direction: top, $size: 20px, $width: 0, $color: green)
+  @if $direction == up
+    border: $size solid transparent
+    border-top: $size solid $color
+    width: $width
+
+  @else if $direction == down
+    border: $size solid transparent
+    border-bottom: $size solid $color
+    width: $width
+
+  @else if $direction == right
+    border: $size solid transparent
+    border-right: $size solid $color
+    width: $width
+
+  @else if $direction == left
+    border: $size solid transparent
+    border-left: $size solid $color
+    width: $width
+
+  @else if $direction == top-to-right
+    border: $size solid transparent
+    border-top: $size solid $color
+    border-right: $size solid $color
+    width: $width
+
+  @else if $direction == right-to-bottom
+    border: $size solid transparent
+    border-right: $size solid $color
+    border-bottom: $size solid $color
+    width: $width
+  
+  @else if $direction == bottom-to-left
+    border: $size solid transparent
+    border-bottom: $size solid $color
+    border-left: $size solid $color
+    width: $width
+
+  @else if $direction == left-to-top
+    border: $size solid transparent
+    border-left: $size solid $color
+    border-top: $size solid $color
+    width: $width 
+  
