@@ -9,7 +9,7 @@ Namely, the Sass compiler, the local BrowserSync server, the auto-prefixer, the 
 
 ## How to work with the Easy-Layout?
 
-1. Download the **optimized-layout** with github ;
+1. Download the **Easy-Layout** with github ;
 2. Install Node Modules: **npm i** ;
 3. Run the template:  **gulp**.
 
