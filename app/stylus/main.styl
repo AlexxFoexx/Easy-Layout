@@ -1,0 +1,46 @@
+@import 'nib'
+@import './var.styl'
+@import './mixins/all-mixins.styl'
+
+
+	
+*
+	padding 0
+	margin 0
+	box-sizing: border-box
+	&::after
+		padding 0
+		margin 0
+		box-sizing: border-box
+	&::before
+		padding 0
+		margin 0
+		box-sizing: border-box
+
+html
+	font-size 16px
+
+body
+	line-height 1.5
+	font-family: 'OpenSansLight'
+
+article, aside, figcaption, figure, 
+footer, header, hgroup, main, nav, section 
+	display block
+
+ol,li 
+	list-style none
+
+h1, h2, h3, h4, h5, h6
+	margin 0
+	font-family default-font
+
+a
+	text-decoration none
+	background-color: transparent;
+	color default-color
+
+
+
+
+@import './media.styl'

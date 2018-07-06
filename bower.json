@@ -1,0 +1,27 @@
+{
+  "name": "",
+  "description": "",
+  "main": "",
+  "authors": [
+    ""
+  ],
+  "license": "ISC",
+  "keywords": [
+    ""
+  ],
+  "homepage": "https://github.com/AlexxFoexx/Easy-Layout",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "./app/libs",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap4": "^4.1.1",
+    "jquery": "^3.3.1",
+    "swiper": "^4.3.3",
+    "fancybox": "^3.3.5",
+    "normalize.css": "^8.0.0"
+  }
+}
