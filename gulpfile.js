@@ -1,29 +1,35 @@
+"use strict";
+
 let gulp = require("gulp"),
-  stylus = require("gulp-stylus"),
-  pug = require("gulp-pug"),
-  browserSync = require("browser-sync"),
-  autoprefixer = require("gulp-autoprefixer"),
-  sourceMaps = require("gulp-sourcemaps"),
-  cleanCSS = require("gulp-cleancss"),
-  rename = require("gulp-rename"),
-  uglify = require("gulp-uglify"),
-  notify = require("gulp-notify"),
-  imageMin = require("gulp-imagemin"),
-  gulpIf = require("gulp-if"),
-  plumber = require("gulp-plumber"),
-  nib = require("nib"),
-  rupture = require("rupture"),
-  del = require("del"),
-  notifier = require("node-notifier"),
-  concat = require("gulp-concat"),
-  argv = require("yargs").argv;
+    stylus = require("gulp-stylus"), /* compiling Stylus */
+    pug = require("gulp-pug"), /* Pug */
+    browserSync = require("browser-sync"), /* Server */
+    autoprefixer = require("gulp-autoprefixer"), /* Autoprefixer */
+    sourceMaps = require("gulp-sourcemaps"), /* Sourcemaps for CSS */
+    cleanCSS = require("gulp-cleancss"), /* CSS compression */
+    rename = require("gulp-rename"), /* Rename files */
+    uglify = require("gulp-uglify"), /* JavaScript compression */
+    notify = require("gulp-notify"), /* Message on errors */
+    imageMin = require("gulp-imagemin"), /* Image compression  */
+    notifier = require("node-notifier"), /* Message popup */
+    plumber = require("gulp-plumber"), /* Stop work stoppage */
+    nib = require("nib"), /* Libary for Stylus */
+    rupture = require("rupture"), /* Libary for Stylus */
+    del = require("del"), /* Delete for all */
+    concat = require("gulp-concat"), /* Merge files */
+    cheerio = require("gulp-cheerio"),
+    svgSprite = require("gulp-svg-sprite"),
+    svgMin = require("gulp-svgmin"),
+    replace = require("gulp-replace"),
+    gulpIf = require("gulp-if");/* Creating a type flag: --compression */
 
 let path = {
   app: {
     html: "./app/pug/pages/**/*.pug",
     css: "./app/stylus/main.styl",
     js: "./app/js/common.js",
-    img: "./app/img/**/*.+(jpg|jpeg|png|gif|svg|ico)",
+    img: "./app/img/**/*.+(jpg|jpeg|png|gif|ico)",
+    svg: "./app/img/svg/*.svg",
     fonts: "./app/fonts/**/*.+(ttf|eot|woff|svg)"
   },
   dest: {
@@ -32,7 +38,7 @@ let path = {
     fonts: "./dist/fonts/",
     js: "./dist/js/",
     img: "./dist/img/",
-
+    svg: "./dist/img/"
   },
   libs: {
     css: [
@@ -51,7 +57,8 @@ let path = {
     html: "./app/pug/**/*.pug",
     css: "app/stylus/**/*.styl",
     js: "app/js/common.js",
-    img: "app/img/**/*.+(jpg|jpeg|png|gif|svg|ico)"
+    img: "app/img/**/*.+(jpg|jpeg|png|gif|ico)",
+    svg: "app/img/svg/*.svg"
   }
 };
 
@@ -125,6 +132,37 @@ gulp.task("vendorJs", function () {
     .pipe(gulp.dest(path.dest.js));
 });
 
+gulp.task("svgSprite", function(done) {
+   gulp.src(path.app.svg)
+     .pipe(svgMin({
+       js2svg: {
+         pretty: true
+       }
+     }))
+     .pipe(cheerio({
+       run: function ($) { 
+         $("[fill]").removeAttr("fill");
+         $("[stroke]").removeAttr("stroke");
+         $("[style]").removeAttr("style");
+        },
+        parserOptions: {
+          xmlMode: true
+        }
+     }))
+     .pipe(replace("&gt;", ">"))
+     .pipe(svgSprite({
+       mode: {
+         inline: true,
+         symbol: {
+           sprite: "../sprite.svg"
+         }
+       }
+     }))
+     .pipe(gulp.dest(path.dest.svg));
+     done();
+});
+
+
 gulp.task("image-min", function () {
   return gulp.src(path.app.img)
     .pipe(imageMin())
@@ -141,22 +179,23 @@ gulp.task("watch", function () {
   gulp.watch(path.watch.html, gulp.series("html"));
   gulp.watch(path.watch.js, gulp.series("js"));
   gulp.watch(path.watch.img, gulp.series("image-min"));
+  gulp.watch(path.watch.svg, gulp.series('svgSprite'));
 });
 
-gulp.task("default", gulp.parallel("watch", "browser-sync", "image-min", "fonts", "html", "styles", "js", "vendorCss", "vendorJs"));
+gulp.task("default", gulp.parallel("watch", "browser-sync", "image-min","svgSprite", "fonts", "html", "styles", "js", "vendorCss", "vendorJs"));
 
-gulp.task("build", gulp.series(gulp.parallel("html", "styles", "js", "image-min", "fonts")));
+gulp.task("build", gulp.series(gulp.parallel("html", "styles", "js", "image-min","svgSprite" , "fonts")));
 
 
 
-gulp.task('del', function () {
+gulp.task("del", function () {
   return del("./dist/**").then(function () {
     notifier.notify({
-      message: 'Успешно удалено бро!'
+      message: "Успешно удалено бро!"
     });
   }).catch(function () {
     notifier.notify({
-      message: 'Бро случилась ошибка:c'
+      message: "Бро случилась ошибка:c"
     });
   });
 });
