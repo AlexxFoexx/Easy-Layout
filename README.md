@@ -10,10 +10,14 @@ Namely, the Sass compiler, the local BrowserSync server, the auto-prefixer, the 
 ## How to work with the Easy-Layout?
 
 1. Download the **Easy-Layout** with github ;
-2. Install Node Modules: **npm i** ;
-3. Run the template:  **gulp**.
+2. Install Node Modules and Bower components: 
+  `npm i`
+  `bower init`
+3. Run the template:
+  `gulp`
 
 ## Сommands:
-1. **gulp build** - the final assembly project.
-2. **gulp** - launch
-3. **gulp --compressed** - compressed css file.
+1. The final assembly project.
+  `gulp build`
+2. Launch:
+  `gulp`
