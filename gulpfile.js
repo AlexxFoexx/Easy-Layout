@@ -15,6 +15,7 @@ let gulp = require("gulp"),
   rupture = require("rupture"),
   del = require("del"),
   notifier = require("node-notifier"),
+  concat = require("gulp-concat"),
   argv = require("yargs").argv;
 
 let path = {
@@ -22,7 +23,7 @@ let path = {
     html: "./app/pug/pages/**/*.pug",
     css: "./app/stylus/main.styl",
     js: "./app/js/common.js",
-    img: "./app/img/**/*.+(jpg|png|gif|svg|icog)",
+    img: "./app/img/**/*.+(jpg|jpeg|png|gif|svg|ico)",
     fonts: "./app/fonts/**/*.+(ttf|eot|woff|svg)"
   },
   dest: {
@@ -31,7 +32,7 @@ let path = {
     fonts: "./dist/fonts/",
     js: "./dist/js/",
     img: "./dist/img/",
-    
+
   },
   libs: {
     css: [
@@ -49,7 +50,8 @@ let path = {
   watch: {
     html: "./app/pug/**/*.pug",
     css: "app/stylus/**/*.styl",
-    js: "app/js/common.js"
+    js: "app/js/common.js",
+    img: "app/img/**/*.+(jpg|jpeg|png|gif|svg|ico)"
   }
 };
 
@@ -96,11 +98,8 @@ gulp.task("styles", function () {
 
 gulp.task("vendorCss", function () {
   return gulp.src(path.libs.css)
+    .pipe(concat("vendor.min.css"))
     .pipe(cleanCSS())
-    .pipe(rename({
-      basename: "vendor",
-      suffix: ".min"
-    }))
     .pipe(gulp.dest(path.dest.css));
 });
 
@@ -119,14 +118,11 @@ gulp.task("js", function () {
 });
 
 
-gulp.task("vendorJs", function() {
-   return gulp.src(path.libs.js)
-      .pipe(uglify())
-      .pipe(rename({
-        basename: "vendor",
-        suffix: ".min"
-      }))
-      .pipe(gulp.dest(path.dest.js));
+gulp.task("vendorJs", function () {
+  return gulp.src(path.libs.js)
+    .pipe(concat("vendor.min.js"))
+    .pipe(uglify())
+    .pipe(gulp.dest(path.dest.js));
 });
 
 gulp.task("image-min", function () {
@@ -135,15 +131,16 @@ gulp.task("image-min", function () {
     .pipe(gulp.dest(path.dest.img).on("error", notify.onError()));
 });
 
-gulp.task("fonts", function() {
-    return gulp.src(path.app.fonts)
-      .pipe(gulp.dest(path.dest.fonts))
+gulp.task("fonts", function () {
+  return gulp.src(path.app.fonts)
+    .pipe(gulp.dest(path.dest.fonts))
 });
 
 gulp.task("watch", function () {
   gulp.watch(path.watch.css, gulp.series("styles"));
   gulp.watch(path.watch.html, gulp.series("html"));
   gulp.watch(path.watch.js, gulp.series("js"));
+  gulp.watch(path.watch.img, gulp.series("image-min"));
 });
 
 gulp.task("default", gulp.parallel("watch", "browser-sync", "image-min", "fonts", "html", "styles", "js", "vendorCss", "vendorJs"));
