@@ -132,8 +132,8 @@ gulp.task("vendorJs", function () {
     .pipe(gulp.dest(path.dest.js));
 });
 
-gulp.task("svgSprite", function(done) {
-   gulp.src(path.app.svg)
+gulp.task("svgSprite", function() {
+  return gulp.src(path.app.svg)
      .pipe(svgMin({
        js2svg: {
          pretty: true
@@ -159,7 +159,6 @@ gulp.task("svgSprite", function(done) {
        }
      }))
      .pipe(gulp.dest(path.dest.svg));
-     done();
 });
 
 
