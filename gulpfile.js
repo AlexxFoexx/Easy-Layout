@@ -17,11 +17,12 @@ let gulp = require("gulp"),
     rupture = require("rupture"), /* Libary for Stylus */
     del = require("del"), /* Delete for all */
     concat = require("gulp-concat"), /* Merge files */
-    cheerio = require("gulp-cheerio"),
-    svgSprite = require("gulp-svg-sprite"),
-    svgMin = require("gulp-svgmin"),
-    replace = require("gulp-replace"),
-    gulpIf = require("gulp-if");/* Creating a type flag: --compression */
+    cheerio = require("gulp-cheerio"), /* Removing superfluous styles from svg*/
+    svgSprite = require("gulp-svg-sprite"), /* Create svg-sprite */
+    svgMin = require("gulp-svgmin"), /*  Svg compression  */
+    replace = require("gulp-replace"), /* RegExp for gulp */
+    gulpIf = require("gulp-if"),
+    argv = require("yargs").argv;/* Creating a type flag: --production */
 
 let path = {
   app: {
@@ -93,11 +94,11 @@ gulp.task("styles", function () {
       use: [nib(), rupture()]
     }))
     .pipe(autoprefixer(["last 5 versions"]))
-    .pipe(cleanCSS())
     .pipe(rename({
       basename: "main",
       suffix: ".min",
     }))
+    .pipe(gulpIf(argv.production, cleanCSS()))
     .pipe(sourceMaps.write())
     .pipe(gulp.dest(path.dest.css))
     .pipe(browserSync.stream());
@@ -113,13 +114,11 @@ gulp.task("vendorCss", function () {
 gulp.task("js", function () {
   return gulp.src(path.app.js)
     .pipe(plumber())
-    .pipe(rename({
-      basename: "common"
-    }))
-    .pipe(uglify())
-    .pipe(rename({
-      suffix: ".min"
-    }))
+    .pipe(rename({ basename: "common" }))
+    .pipe(gulpIf(argv.production, 
+      uglify(), 
+      rename({ suffix: ".min" })
+    ))
     .pipe(gulp.dest(path.dest.js))
     .pipe(browserSync.stream());
 });
@@ -164,7 +163,7 @@ gulp.task("svgSprite", function() {
 
 gulp.task("image-min", function () {
   return gulp.src(path.app.img)
-    .pipe(imageMin())
+    .pipe(gulpIf(argv.production, imageMin()))
     .pipe(gulp.dest(path.dest.img).on("error", notify.onError()));
 });
 
@@ -181,9 +180,27 @@ gulp.task("watch", function () {
   gulp.watch(path.watch.svg, gulp.series('svgSprite'));
 });
 
-gulp.task("default", gulp.parallel("watch", "browser-sync", "image-min","svgSprite", "fonts", "html", "styles", "js", "vendorCss", "vendorJs"));
+gulp.task("default", gulp.parallel(
+            "watch", 
+            "browser-sync", 
+            "image-min",
+            "svgSprite", 
+            "fonts", 
+            "html", 
+            "styles", 
+            "js", 
+            "vendorCss", 
+            "vendorJs"
+));
 
-gulp.task("build", gulp.series(gulp.parallel("html", "styles", "js", "image-min","svgSprite" , "fonts")));
+gulp.task("build", gulp.series(gulp.parallel(
+            "html", 
+            "styles", 
+            "js", 
+            "image-min",
+            "svgSprite" , 
+            "fonts"
+)));
 
 
 
