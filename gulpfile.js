@@ -38,6 +38,7 @@ gulp.task("styles", function() {
       .pipe(browserSync.stream());
 });
 
+
 gulp.task("js", function () {
   return gulp.src("app/js/common.js")
     .pipe(rename({basename: "scripts"}))
