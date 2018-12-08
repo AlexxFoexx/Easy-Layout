@@ -1,8 +1,15 @@
 @import 'nib'
+@import 'rupture'
 @import './var.styl'
 @import './mixins/all-mixins.styl'
+@import './fonts'
+flex-version = flex
+support-for-ie = false
+vendor-prefixes = official
 
-
+/*Адаптив*/
+rupture.scale = 0 576px 768px 992px 1200px
+rupture.scale-names = 'xs' 'sm' 'md' 'lg' 'xl'
 	
 *
 	padding 0
@@ -19,10 +26,16 @@
 
 html
 	font-size 16px
+	+below(sm)
+		font-size 15px
 
 body
 	line-height 1.5
 	font-family default-text
+	font-weight: 400
+	color: def-color
+	text-align: left
+	background-color: #f9f9f9
 
 article, aside, figcaption, figure, 
 footer, header, hgroup, main, nav, section 
@@ -38,9 +51,2669 @@ h1, h2, h3, h4, h5, h6
 a
 	text-decoration none
 	background-color: transparent;
-	color default-color
+	color def-color
+	outline: none
+	&:hover
+		text-decoration: none
+		color: inherit
+
+.no-offset
+	padding 0
+	margin 0
+
+.nopadding
+	padding 0
+
+.nomargin
+	margin 0
+
+.s-pad
+	padding 50px 0px
+	+below(sm)
+		padding: 30px 0px
+
+.s-pad-bottom
+	padding-bottom 50px
+	+below(sm)
+		padding-bottom: 30px
+
+.s-pad-top
+	padding-top 50px
+	+below(sm)
+		padding-top: 30px
+
+.s-bg
+	background #F7F7F7
+
+.s-bg-dark
+	background #191919
+
+.s-title
+	margin-bottom 30px
+	line-height 1
+	font-family 'OpenSansExtraBold'
+	font-size rem(36px)
+	color: #000
+	+below(sm)
+		font-size rem(30px)
+	&--top
+		margin: 30px 0px
+	&--noffset
+		+below(sm)
+			margin-bottom: 15px
+	&-white
+		margin-bottom 30px
+		line-height 1
+		font-family 'OpenSansExtraBold'
+		font-size rem(36px)
+		color: def-color
+		+below(sm)
+			font-size rem(30px)
+.hidden
+	display none
+
+.h-100
+	height: 100%
+
+
+.breadcrumbs
+	&__link
+		display: inline-block
+		padding-bottom: 3px
+		font-family: font7
+		font-size: rem(15px)
+		color: #000
+		border-bottom: 1px solid #000
+		transition(border-bottom)
+		&:hover
+			border-bottom 1px solid transparent
+			color: #000
+		&--white
+			color #fff
+			border-bottom: 1px solid #fff
+			&:hover
+				border-bottom 1px solid transparent
+				color: #fff
+	&__separator
+		margin: 0px 8px
+		font-family: font7
+		font-size: rem(15px)
+		color: #000
+		&--white
+			color #fff
+.header
+	position relative
+	width 100%
+
+	.logo-wrap
+		width 120px
+		display block
+		+below(sm)
+			width: 90px
+		.logo
+			width 100%
+			object-fit: cover
+	.header-menu
+		position absolute
+		top 0
+		left 0
+		width: 100%
+		padding 20px 0px
+		z-index: 2
+		&--nopos
+			position: static
+			background: #191919
+		&::after
+			position absolute
+			content ''
+			bottom 0
+			left 0
+			width 100%
+			height 1px
+			background linear-gradient(90deg, transparent 10%, 
+											  rgba(255,255,255, .1) 30%, 
+											  rgba(255,255,255, .2) 50%, 
+											  rgba(255,255,255, .1) 70%, 
+											  transparent 90%)
+		.h-nav
+			position relative
+			display flex	
+			justify-content space-between
+			align-items center
+			margin: 0px
+			+below(md)
+				display none
+			&-item
+				position relative
+				display: flex
+				align-items: center
+				cursor pointer
+				&:nth-child(4) span
+					position absolute
+					top -7px
+					right -9px
+					size 14px
+					display flex
+					justify-content center
+					align-items center
+					border-radius: 50%
+					font-size rem(10px)
+					background #0000cc
+				&:nth-child(5):hover .showreel-icon
+					opacity: 1
+			&__link
+				position relative
+				font-family 'OpenSansSemiBold'
+				margin 0px 20px
+				+below(lg)
+					font-size rem(13px)
+				&:hover
+					color: #fff
+			.line
+				position absolute
+				bottom -21px
+				height 2px
+				background #0000cc
+				transition(all, .45s)
 
 
 
+		.showreel
+			&-icon
+				position relative
+				left -20px
+				size 40px
+				fill def-color
+				opacity: .4
+				transition(opacity, .45s)
+.header-content
+	width: 100%
+	height 93.3vh
+	+below(xs)
+		height: 100vh
+	&--nofull
+		height: 50vh
+	.header-idx-slider
+		size 100%
+		display flex
+		justify-content center
+		.container-slide
+			position absolute
+			top: 80px
+			width 100%
 
-@import './media.styl'
+		.swiper-slide
+			size 100%
+			background-repeat: no-repeat
+			background-size cover
+			background-position: center
+			.overlay-bg
+				position absolute
+				top 0
+				left 0
+				size 100%
+				background  linear-gradient(130deg, rgba(0,0,0,1) 30%, rgba(0,0,0, .9) 60% ,rgba(0,0,0,  .9) 50%, rgba(0,0,0, .8) 100%)
+			.container-content
+				position relative
+				top 80px
+				width: 100%
+				height: 81.5%
+				+below(sm)
+					top 40px
+				.slide-content-item
+					height: 100%
+					margin-top 60px
+
+					.full-height
+						height 100%
+					.slide-content
+						size 100%
+						display flex
+						flex-direction: column
+						justify-content space-between
+						&-title
+							font-family 'HundaiSansHeadBold'
+							font-size rem(120px)
+							font-weight 700
+							line-height 1
+							transition(all, .25s)
+							transform translateY(-40px)
+							opacity: 0
+							+below(md)
+								font-size rem(80px)
+							+below(sm)
+								font-size rem(70px)
+							+below(xs)
+								font-size: rem(60px)
+							&-is-active
+								opacity: 1
+								transform translateY(0)
+						&-des
+							display flex
+							justify-content space-between
+							align-items center
+							margin-bottom: 20px
+							+below(sm)
+								flex-direction: column
+								align-items: flex-start
+							&-text
+								width 70%
+								+below(420px)
+									width 100%
+								p
+									margin 0
+									font-size rem(16px)
+							&-play
+								+below(sm)
+									margin-top: 10px
+								&:hover .slide-content-des-play__btn::after
+									opacity 0
+								&:hover .slide-content-des-icon
+									opacity: 1
+
+								&__btn
+									position relative
+									margin-right 23px
+									+below(sm)
+										font-size: rem(18px)
+									&::after
+										position absolute
+										content ''
+										bottom -4px
+										left 0
+										width 100%
+										height 1px
+										background  linear-gradient(to bottom, rgba(255,255,255, .4) 100%)
+										transition(opacity, .45s)
+							&-icon
+								size 50px
+								fill def-color
+								opacity: .4
+								transition(opacity, .45s)
+		.container-navigation
+			position absolute
+			bottom 15%
+			width 100%
+			height 40px
+			display flex
+			align-items center
+			+below(sm)
+				bottom 32%
+			.swiper-pagination
+				position relative
+				width auto
+				display flex
+				&-bullet
+					background def-color
+					opacity: .4
+					margin-right 30px
+					transition(opacity, .35s)
+					.loading-dost
+						size 20px
+						opacity 0
+					&-active
+						position relative
+						transform: scale(1.5)
+						opacity: 1
+						transition(opacity, .35s)
+						border 1px solid def-color
+						.loading-dost
+							position absolute
+							top: -5.5px
+							left -5.5px
+							opacity 1
+							size 20px
+							margin-bottom 20px
+							transition(opacity, .35s)
+							circle
+								stroke-dasharray 1000
+								stroke-dashoffset 1000
+								animation dash 134s linear alternate infinite
+
+			.swiper-button-next
+				position relative
+				top auto
+				size: 50px
+				margin 0 0 0 20px
+				background transparent
+				&:hover .swiper-button-next__icon
+					opacity: 1
+				+below(xs)
+					display: none
+				&__icon
+					size 50px
+					fill def-color
+					opacity .4
+					transition(opacity, .45s)
+
+
+@keyframes dash 
+	from 
+		stroke-dashoffset 1000
+	to 
+		stroke-dashoffset 0
+
+.start-project-btn 
+	padding 8px 30px
+	border-radius: 20px
+	border 1px dashed transparent
+	background #0000cc
+	transition()
+	&:hover
+		border 1px dashed #0000cc
+		color: #fff
+		background: transparent
+	+below(lg)
+		font-size rem(12px)
+
+.header-links
+	display block
+	width 100%
+	background #0A0B0B
+	padding 15px 0px
+	+below(md)
+		display none
+	.lang
+		height 100%
+		display flex
+		align-items center
+		&-btn
+			opacity: .4
+			^[0] .active
+				opacity: 1
+		&-sep
+			opacity .4
+			margin 0px 10px
+
+.social
+	size 100%
+	display flex
+	justify-content flex-end
+	align-items center
+	&-links
+		display flex
+		.social-item
+			display block
+			size 35px
+			margin-right 15px
+			&__img
+				size 100%
+	.contacts-details
+		position relative
+		font-size rem(16px)
+		&:hover::after
+			opacity: 0
+		&::after
+			position absolute
+			content ''
+			bottom -4px
+			left 0
+			width 100%
+			height 1px
+			background  linear-gradient(to bottom, rgba(255,255,255, .4) 100%)
+			transition(opacity, .45s)
+.phone
+	size 100%
+	display flex
+	justify-content flex-end
+	align-items center
+	&-text
+		margin-right 15px
+		font-size rem(16px)
+		opacity: .4
+	&-number
+		font-size rem(18px)
+
+
+.our-speciality
+	width 100%
+	.main-content
+		width 90%
+		color: #000
+		margin-bottom 50px
+		+below(sm)
+			width: 100%
+			margin-bottom: 30px
+		&-title
+			margin-bottom 20px
+			font-family font4
+			font-size rem(23px)
+		&-text
+			font-family font4
+			font-size rem(16px)
+	.speciality-block
+		position relative
+		display flex
+		flex-direction: column
+		padding 25px
+		margin-bottom 20px
+		background def-color
+		overflow hidden
+		&:hover::before
+			animation: wave 1.5s ease-in-out alternate infinite
+			bottom 0
+		&:hover
+			.speciality-des .speciality-des__title
+				color: def-color
+			.speciality-des .speciality-des__text
+				color #9999ff
+		&:hover .speciality-img
+			transform: translateY(20px)
+
+		&::before
+			position absolute
+			bottom -100%
+			left 0
+			content ''
+			width: calc(100% + 50%)
+			height 55%
+			background url(../img/wave.png)
+			transition(all, .85s)
+		.speciality-img
+			size 50px
+			margin-bottom 60px
+			transition(transform, .35s)
+			+below(sm)
+				margin-bottom: 30px
+			&__icon
+				size 100%
+		.speciality-des
+			position relative
+			color: #000
+			&__title
+				font-family default-text
+				font-size rem(17px)
+				transition(color, .65s)
+				transition-delay: .10s
+			&__text
+				font-family font3
+				font-size rem(13px)
+				color: def-gray
+				transition(color, .55s)
+				transition-delay: .15s
+
+@keyframes wave
+	to
+		left 0
+	from
+		left -86px
+
+/*
+	СЕКЦИЯ КОМАНДА
+*/
+.team
+	.team-human
+		width 90%
+		display flex
+		align-items center
+		justify-content space-between
+		+below(md)
+			width 100%
+			margin-bottom 30px
+		+below(sm)
+			flex-wrap: wrap
+		&-item
+			display flex
+			flex-direction column
+			justify-content center
+			align-items center
+			+below(sm)
+				width 50%
+				margin-bottom 30px
+			.team-human-img
+				size 100px
+				margin-bottom 12px
+				border-radius: 50%
+				overflow hidden
+				&__photo
+					size 100%
+					object-fit: cover
+			.team-human-des
+				position relative
+				left -3px
+				display flex
+				flex-direction column
+				justify-content center
+				&__firstname,&__lastname
+					font-family default-text
+					font-size rem(16px)
+					color: def-black
+				&__position
+					margin-top 5px
+					font-family: font3
+					font-size rem(14px)
+					color: def-gray
+	.team-more
+		width 100%
+		display flex
+		flex-direction column
+		justify-content space-between
+		+below(md)
+			width 100%
+		&__content
+			p
+				font-family default-text
+				font-size rem(18px)
+				color: def-black
+		&__btn--wrap
+			+below(md)
+				display flex
+				justify-content center
+				align-items center
+				margin-top 30px
+/*
+	КНОПКА С СТРЕЛКОЙ
+*/
+.blue__btn
+	position relative
+	display inline-block
+	padding 8px 100px 8px 24px
+	border 1px solid #1C1CCB
+	border-radius: 20px
+	font-family default-text
+	font-size rem(15px)
+	color: def-black
+	overflow hidden
+	transition(all, .35s)
+	&:hover
+		padding 8px 24px 8px 24px
+		background #0707c6
+		color def-color
+	&:hover .blue-icon
+		fill def-color
+		right -50px
+	.blue-icon
+		position absolute
+		top 0
+		right 20px
+		width 40px
+		height 40px
+		fill #0707c6
+		transition(all, .35s)
+
+/*
+	СЕКЦИЯ ПРОЕКТЫ
+*/
+
+.project-main-view
+	width 100%
+	height 760px
+	display flex
+	flex-direction column
+	justify-content space-between
+	padding 45px
+	background-repeat no-repeat
+	background-size cover
+	&:hover &__name
+		transform translateX(20px)
+	&:hover &-des
+		transform translateX(20px)
+	+below(sm)
+		height 460px
+		margin-bottom 30px
+		padding 20px
+	&__name
+		font-family font3
+		font-weight 200
+		font-size rem(22px)
+		color: #f6eeee
+		transition(all, .35s)
+		transition-delay: .25s
+	&-des
+		transition(all, .35s)
+		&__develop
+			font-family default-text
+			font-size rem(28px)
+			color: #f6eeee
+	&-small
+		display flex
+		flex-direction column
+		&__date
+			font-family default-text
+			font-size rem(16px)
+			color: rgba(255,255,255, .5)
+		&__tags
+			font-family default-text
+			font-size rem(13px)
+			color: rgba(255,255,255, .5)
+
+.project-veiw-items
+	size 100%
+	display flex
+	flex-direction column
+	justify-content space-between
+	+below(sm)
+		margin-bottom 30px
+	&--row
+		flex-direction: row
+		+below(md)
+			flex-direction: column
+.project-view
+	width 100%
+	height 365px
+	display flex
+	flex-direction column
+	justify-content space-between
+	padding 45px
+	&:hover .project-view__name
+		transform translateX(20px)
+	&:hover .project-view-des
+		transform translateX(20px)
+	+below(sm)
+		padding 20px
+
+	//Модификаторы блока
+	&--row
+		width: 48%
+		+below(md)
+			width: 100%
+		margin-bottom: 30px
+	&--bg
+		background-repeat no-repeat
+		background-size cover
+		background-position center
+	&--border
+		border 1px solid #DDDDDD
+		border-radius: 5px
+	&-color
+		color: def-color !important
+	// Конец модификаторов блока
+	&--pad
+		margin-top: 30px
+	&__name
+		font-family font3
+		font-weight 200
+		font-size rem(22px)
+		color: #f6eeee
+		transition(all, .35s)
+		transition-delay: .25s
+		&--color
+			color def-black
+	&-des
+		transition(all, .35s)
+		&--color
+			color: def-black !important
+		&__develop
+			font-family default-text
+			font-size rem(22px)
+			color: #f6eeee
+			&--color
+				color def-black
+	&-small
+		display flex
+		flex-direction column
+		&__date
+			font-family default-text
+			font-size rem(16px)
+			color: rgba(255,255,255, .5)
+			&--color
+				color #909090
+		&__tags
+			font-family default-text
+			font-size rem(13px)
+			color: rgba(255,255,255, .5)
+			&--color
+				color #909090
+
+.our-experience
+	display flex
+	justify-content space-between
+	align-items center
+	width 88%
+	+below(md)
+		width 100%
+		margin-bottom 30px
+	+below(sm)
+		flex-wrap: wrap
+	&-item
+		display flex
+		flex-direction column
+		+below(sm)
+			width 100%
+			margin-bottom 30px
+		&__number
+			line-height 1
+			font-family default-text
+			font-size rem(48px)
+			color: def-black
+		&__text
+			font-family default-text
+			font-size rem(22px)
+			color: def-black
+	&-content
+		p
+			font-family default-text
+			font-size rem(16px)
+			color: def-gray
+	&-btn
+		display flex
+		justify-content center
+		align-items center
+
+
+/*
+	СЕКЦИЯ КЛИЕТЫ
+*/
+
+
+.clients-items
+	width 100%
+	.clients-item
+		width 100%
+		height auto
+		display block
+		&__img
+			width 60%
+			height inherit 
+			object-fit: cover
+.col-clients
+	margin 0px 0px 50px 0px
+	&:nth-child(6n)
+		width 16.666667%
+		height auto
+		margin 0px 0px 50px 0px
+	&:nth-child(n+7)
+		width 16.666667%
+		height auto
+		margin 0
+		+below(md)
+			margin 0px 0px 50px 0px
+/*
+	СЕКЦИЯ ОТЗЫВЫ
+*/
+.reviews
+	position relative
+	overflow hidden
+	+below(890px)
+		padding: 0px 15px
+	&-slider
+		position static
+		margin-bottom 100px
+	&-slide
+		width 100%
+		display flex
+		padding 30px
+		border: 1px solid rgba(153,153,153, .7)
+		border-radius: 4px
+		+below(sm)
+			flex-direction: column
+		^[0]-img-block
+			width 80px
+			margin-right 20px
+			overflow hidden
+			.reviews-img-wrap
+				size 80px
+				.reviews-img
+					size 100%
+					border-radius: 50%
+					object-fit: cover
+		^[0]-des
+			width 80%
+			margin-top 20px
+			+below(sm)
+				width: 100%
+			.reviews-main-des
+				display flex
+				flex-direction: column
+				&__title
+					font-family default-text
+					font-size rem(22px)
+					margin-bottom 5px
+				&__position
+					font-family font3
+					font-size rem(12.5px)
+					color: def-gray
+					margin-bottom 30px
+			&__text
+				font-family font4
+				font-size rem(16px)
+				color: def-color
+	^[0]-pagination
+		bottom 15px !important
+		+below(890px)
+			bottom 40px !important
+		.swiper-pagination-bullet
+			background: def-color
+			opacity: .4
+			margin-right: 30px
+			transition(opacity, .35s)
+			&-active
+				position relative
+				transform: scale(1.2)
+				opacity: 1
+				transition(opacity, .35s)
+				border 1px solid def-color
+
+
+/*
+	ФУТЕР
+*/
+
+.footer
+	width 100%
+	background #0A0A0A
+	&-mail
+		display flex
+		flex-direction column
+		+below(sm)
+			align-items center
+			margin-bottom 30px
+		.footer-email
+			line-height 1
+			font-size rem(26px)
+			margin-bottom 8px
+		.footer-text
+			font-weight font3
+			font-size rem(14px)
+			color: #5c5c5c
+	.address
+		display flex
+		+below(sm)
+			justify-content center
+			margin-bottom 20px
+		&-img
+			width 24px
+			margin-right 14px
+			&__icon
+				size 24px
+		.address-des
+			&__title
+				font-size rem(14px)
+				margin-bottom 5px
+			&__subtitle 
+				font-size rem(12px)
+				color: #5c5c5c
+	.studio
+		display flex
+		flex-direction column
+		margin-top 50px
+		+below(sm)
+			align-items center
+			margin-top: 10px
+		&-title
+			margin-bottom 15px
+			font-family default-text
+			font-size rem(16px)
+			color: rgba(255,255,255, .5)
+		&-polytics
+			display inline-block
+			margin-bottom 5px
+			line-height 1
+			font-family font3
+			font-size rem(14px)
+			color #5c5c5c
+			transition()
+			&:hover
+				color #fff
+		&-personal-data
+			display inline-block
+			line-height 1
+			font-family font3
+			font-size rem(14px)
+			color #5c5c5c
+			transition()
+			&:hover
+				color #fff
+	.footer-nav
+		display flex
+		justify-content space-between
+		margin-top: 50px
+		margin-left 40px
+		+below(md)
+			display none
+		&__link
+			padding 5px 0px
+			font-size rem(14px)
+			transition()
+			&:hover
+				transform translateY(-7px)
+	
+
+
+/*
+  МОДАЛЬНЫЕ ФОРМЫ
+*/
+
+.modal-form
+	max-width: 550px
+	min-width: 350px
+	width: 100%
+	display flex
+	flex-direction column
+	justify-content center
+	align-items center
+	background #fff
+	padding 40px
+	.fancybox-close-small
+		color: #000
+	&-conf
+		max-width: 750px
+		min-width: 290px
+		&-text
+			color: #000
+			text-align left
+	&-processing
+		max-width: 750px
+		min-width: 290px
+		&-text
+			color: #000
+			text-align left
+	&-head
+		width: 100%
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		margin-bottom 20px
+		&__title
+			margin-bottom 10px
+			font-family: font5
+			font-size: rem(22px)
+			color: #000
+		&__person
+
+			font-family: font5
+			font-size: rem(18px)
+			color: #000
+	&-group
+		width: 100%
+		display: flex
+		flex-direction: column
+		margin-bottom: 15px
+		&__label
+			color: def-black
+		&__input
+			width 100%
+			outline: none
+			border: none
+			padding 5px 0px
+			border-bottom 1px solid def-black
+	&-btn-wrap
+		text-align: center
+	&-btn
+		margin-top: 20px
+		outline: none
+		border: 1px dashed transparent
+		color: def-color
+		padding: 10px 52px
+		border-radius: 22px
+		background: #0000cc
+		transition()
+		&:hover
+			border 1px dashed #0000cc
+			color: #fff
+
+.conf-and-polytics
+	margin-top 15px
+	color: #000
+	&__item
+		color: #000
+		border-bottom 1px dashed #000
+		&:hover
+			color: #000
+			border-bottom 1px dashed transparent
+
+
+.modal-form {
+	transform: translateY(-50px);
+	transition: all .7s;
+}
+
+.modal-form h3,
+.modal-form p,
+.modal-form input,
+.modal-form label,
+.modal-form button {
+	transform: translateY(-50px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: .4s;
+}
+
+/* Final state */
+.fancybox-slide--current .modal-form,
+.fancybox-slide--current .modal-form h3,
+.fancybox-slide--current .modal-form p,
+.fancybox-slide--current .modal-form input,
+.fancybox-slide--current .modal-form label,
+.fancybox-slide--current .modal-form button {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+/* Reveal content with different delays */
+.fancybox-slide--current .modal-form h3 {
+	transition-delay: .1s;
+}
+
+.fancybox-slide--current .modal-form p {
+	transition-delay: .2s;
+}
+
+.fancybox-slide--current .modal-form label {
+	transition-delay: .3s;
+}
+
+.fancybox-slide--current .modal-form input {
+	transition-delay: .4s;
+}
+
+.fancybox-slide--current .modal-form button
+	transition-delay: .4s;
+
+
+
+.fancybox-slide
+	padding 0
+	
+.modal-form-full
+	width 100%
+	height 100%
+	transform: translateY(50px)
+	opacity: 0
+	transition-property: transform, opacity
+	transition-duration: .5s
+	+below(md)
+		padding 15px
+	.fancybox-button
+		display none
+	.breadcrumbs
+		display flex
+		+below(md)
+			display: none
+		&__link
+			position relative
+			font-family font3
+			font-size rem(15px)
+			color: def-black
+			opacity .6
+			&::after
+				position absolute
+				content '/'
+				top 0px
+				right -15px
+				color inherit
+				font-size rem(16px)
+	.start-project-header
+		display flex
+		justify-content space-between
+		align-items center
+		margin 40px 0px
+		+below(md)
+			flex-direction: column
+			margin: 20px 0px
+		.start-project-title
+			font-family font5
+			font-size rem(40px)
+			color: def-black
+			+below(md)
+				font-size: rem(30px)
+				margin: 10px 0px
+		.start-project-links
+			display flex
+			+below(md)
+				width: 100%
+				justify-content: space-between
+			.start-project-number
+				margin-right 100px
+				font-family font5
+				font-size rem(18px)
+				color: def-black
+				+below(md)
+					margin-right: 0
+			.modal-close
+				display flex
+				align-items center
+				&__text
+					margin 0px 5px 2px 0px
+					line-height .9
+					font-family default-text 
+					font-size rem(18px)
+					color: #B7B7B7
+				&__icon
+					size 15px
+					fill #B7B7B7
+.start-form
+	.start-form-title
+		margin-bottom 20px
+		font-family font5
+		font-size rem(20px)
+		color def-black
+	.start-form-group-line
+		display flex
+		margin-bottom 40px
+		+below(md)
+			flex-direction: column
+			margin-bottom: 0
+		.start-form-group
+			width 50%
+			display flex
+			flex-direction column
+			&:first-child
+				margin-right 30px
+				+below(md)
+					margin-right: 0px
+			+below(md)
+				width: 100%
+				margin-bottom: 30px
+			&__label
+				color: def-black
+			&__input
+				width 100%
+				outline: none
+				border: none
+				padding 10px 0px
+				border-bottom 1px solid def-black
+	.start-form-about
+		display flex
+		flex-direction column
+		&-title
+			margin-bottom 20px
+			font-family font5
+			font-size rem(20px)
+			color def-black
+		.start-form-group
+			width 100%
+			display flex
+			flex-direction column
+			&__label
+				color: def-black
+			&__input
+				width 100%
+				outline: none
+				border: none
+				padding 10px 0px
+				border-bottom 1px solid def-black
+		.files-up
+			margin-top 40px
+			.file
+				position relative
+				display inline-block
+				margin-right 35px
+				padding 7px 18px 7px 35px
+				border-radius: 30px
+				border 1px dashed #B7B7B7
+				font-size rem(14px)
+				color: def-black
+				&::after
+					position absolute
+					content ''
+					left 9px
+					top 9px
+					size 20px
+					background-image url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNzkyIDc5MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNzkyIDc5MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik01NTIuMDYxLDIyOS4xMThjLTEzLjY4NSwwLTI0LjcyMywxMC41OTUtMjQuNzIzLDI0LjI5djM1OC45MTFjMCwzNi42NDYtMTMuMjQyLDY2LjY2Mi0zOC44NTEsOTIuMjcxICAgcy01Ni4wNjcsMzguODUxLTkzLjE0NiwzOC44NTFjLTM2LjIwNCwwLTY3LjEwNS0xMi44LTkyLjcxMy0zOC40MDhjLTI1LjYwOC0yNS42MDctMzguNDA4LTU2LjUwOS0zOC40MDgtOTIuNzEzVjQ3Ni43OXYtNzIuMzk4ICAgVjIyNi4wMjl2LTg1LjY0di0wLjg4NnYtMC44ODVjMC0yNC4yOCw4LjkzOC00NS4zNTgsMjYuMDUxLTYyLjY4OGMxNy4zMy0xNy41NDYsMzguMzk4LTI2LjkyNyw2My41NzMtMjYuOTI3ICAgYzI1LjE2NiwwLDQ2LjI0NCw5LjM4MSw2My41NjMsMjYuOTI3YzE3LjExMywxNy4zMywyNi4wNTIsMzguNDA4LDI2LjA1Miw2Mi42ODh2MC44ODV2MS43NjJ2NDAwLjQyNyAgIGMwLDI1LjE1Ni0xOS40MjEsNDQuNTg2LTQ0LjU4Niw0NC41ODZjLTI0LjI4MSwwLTQ0LjE1My0yMC4zMDYtNDQuMTUzLTQ0LjU4NlYzMzEuOTg0YzAtMTMuNjg1LTEwLjU5Ni0yNC4yOC0yNC4yOC0yNC4yOCAgIHMtMjQuMjgsMTAuNTk1LTI0LjI4LDI0LjI4djIwOS43MDhjMCwyNi4wNDEsOC44MzQsNDguMTE3LDI2LjkyNyw2Ni4yMmMxOC4xMDIsMTguMTAyLDM5LjczNiwyNi45MjcsNjUuNzg3LDI2LjkyNyAgIGMyNi4wNDEsMCw0Ny45LTkuMDUxLDY2LjIxOS0yNi45MjdjMTcuODg2LTE3LjQ1MiwyNi45MjgtMzkuMjkzLDI2LjkyOC02Ni4yMlYxMzkuNTAzdi0wLjg4NSAgIGMwLTM3Ljk2NS0xMy43OTgtNzAuNTI0LTQwLjYxMi05Ny41NjRDNDI0LjM2OCwxMy43ODgsMzkxLjgwOSwwLDM1My44NDQsMGMtMzcuOTc0LDAtNzAuNTMzLDEzLjc4OC05Ny41NzMsNDEuMDU0ICAgYy0yNi44MTMsMjcuMDQtNDAuNjExLDU5LjU5OS00MC42MTEsOTcuNTY0djAuODg1djg2LjUyNnYxNzguMzYzdjcyLjM5OHYxMzUuNTI4YzAsNDkuODg5LDE3LjY1OSw5Mi4yNzEsNTIuNTM1LDEyNy4xNDYgICBTMzQ1LjQ1Miw3OTIsMzk1LjM0MSw3OTJzOTMuMTQ2LTE2Ljc3MywxMjguNDY1LTUyLjA5M2MzNS4zMTgtMzUuMzE4LDUyLjUzNS03OC41NzYsNTIuNTM1LTEyNy41ODlWMjUzLjQwOCAgIEM1NzYuMzQxLDIzOS43MTMsNTY1Ljc0NSwyMjkuMTE4LDU1Mi4wNjEsMjI5LjExOHoiIGZpbGw9IiNiN2I3YjciLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K')
+					background-repeat no-repeat
+					background-size 20px
+					background-position  50% 50%
+			.file-text
+				display inline-block
+				margin-top 10px
+				font-family font6
+				font-size rem(14px)
+				color: #B7B7B7
+	&-submit
+		margin-top: 20px
+		outline: none
+		border: 1px dashed transparent
+		color: def-color
+		padding: 10px 52px
+		border-radius: 22px
+		background: #0000cc
+		transition()
+		&:hover
+			border 1px dashed #0000cc
+			color: #fff
+
+
+.fancybox-slide--current .modal-form-full
+	transform: translateY(0);
+	opacity: 1;
+
+
+.btn-m-menu
+	position: relative
+	width: 35px
+	height: 38px
+	display: none
+	justify-content: center
+	align-items: center
+	margin-left: 20px
+	cursor: pointer
+	+below(md)
+		display: flex
+	&__dot
+		size 6px
+		background: #d0d0cf
+		border-radius 50%
+		&::before
+			content: ''
+			position: absolute
+			top 0px
+			size 6px
+			background: #d0d0cf
+			border-radius 50%
+		&::after
+			content: ''
+			position: absolute
+			bottom 0px
+			size 6px
+			background: #d0d0cf
+			border-radius 50%
+
+			
+.m-menu
+	position: fixed
+	top: -100%
+	left: 0
+	width 100%
+	height 100%
+	display: flex
+	flex-direction: column
+	background: #000
+	padding: 30px
+	z-index: 99999
+	transition(top, .34s)
+	&--active
+		top: 0
+	&-header
+		width: 100%
+		display: flex
+		flex-direction: column
+		&__top
+			display: flex
+			justify-content: space-between
+			align-items: center
+			margin-bottom: 20px
+			transform translateY(-10px)
+			opacity: 0
+			&--active
+				transform translateY(0)
+				opacity: 1
+				transition(all, .25s)
+				transition-delay .25s
+			.lang
+				height 100%
+				display flex
+				align-items center
+				&__link
+					opacity: .4
+					font-size: rem(22px)
+					+below(xs)
+						font-size: rem(18px)
+					&--active
+						opacity: 1
+				&-sep
+					opacity .4
+					margin 0px 10px
+			.btn-m-menu
+				position: relative
+				right: 12px
+				width: 35px
+				height: 30px
+				display: flex
+				justify-content: center
+				align-items: center
+				margin-left: 20px
+				cursor: pointer
+				&__dot
+					size 6px
+					background: #d0d0cf
+					border-radius 50%
+					&::before
+						content: ''
+						position: absolute
+						top calc(50% - 3px)
+						left -0px
+						size 6px
+						background: #d0d0cf
+						border-radius 50%
+					&::after
+						content: ''
+						position: absolute
+						top calc(50% - 3px)
+						right -0px
+						size 6px
+						background: #d0d0cf
+						border-radius 50%
+
+			^[1]__call
+				size 100%
+				display flex
+				align-items center
+				.m-menu-phone
+					margin-right 5px
+					opacity: .4
+					font-size: rem(22px)
+					+below(xs)
+						font-size: rem(18px)
+				&-number
+					font-size: rem(22px)
+					+below(xs)
+						font-size: rem(18px)
+
+	^[0]-nav
+		display: flex
+		flex-direction: column
+		opacity 0
+		transform translateY(-40px)
+		transition(all,.54s)
+		transition-delay .25s
+		&--active
+			opacity: 1
+			transform translateY(0)
+
+		&__link
+			padding: 20px 0px
+			font-size: rem(25px)
+			+below(xs)
+				font-size: rem(20px)
+
+	&-footer
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-top: 20px
+		opacity 0
+		transform translateY(-40px)
+		transition(all,.54s)
+		transition-delay .35s
+		&--active
+			opacity: 1
+			transform translateY(0)
+		.m-showrel
+			width: 45%
+			display: flex
+			align-items: center
+			&__text
+				color: #fff
+				font-size: rem(22px)
+				+below(xs)
+					font-size: rem(18px)
+			&-icon
+				position relative
+				size 50px
+				fill def-color
+				opacity: .4
+				transition(opacity, .45s)
+				+below(xs)
+					size 55px
+		.m-portfolio
+			display: flex
+			justify-content: flex-end
+			width: 55%
+			&__link
+				display block
+				size 45px
+				margin-left 15px
+				+below(xs)
+					size 35px
+				.m-portfolio-img
+					size 100%
+
+/*
+ 	Страница: О компании
+ */
+
+.person-slide
+	size 100%
+	&-item
+		display: flex
+		justify-content: center
+		background-position: 50% 50%
+		background-size: cover
+		background-repeat: no-repeat
+		+below(md)
+			background-position: 45% 50%
+		.person-container
+			margin-top: 10%
+			+below(md)
+				margin-top: 14%
+			+below(xs)
+				margin-top: 30%
+			.person-intro
+				width 42%
+				+below(md)
+					width: 60%
+				+below(xs)
+					width: 100%
+				.person-des
+					&__title
+						font-family: font4
+						font-weight: 200
+						font-size: rem(32px)
+						+below(xl)
+							font-size: rem(30px)
+					&__position
+						display: inline-block
+						font-family: font4
+						font-weight: 700
+						font-size: rem(16px)
+						color: #666666
+						margin: 20px 0px
+					&__text
+						position: relative
+						font-family: font4
+						font-weight: 200
+						font-size: rem(20px)
+						padding-bottom: 30px
+						margin-bottom: 20px
+						+below(xl)
+							font-size: rem(18px)
+						+below(lg)
+							font-size: rem(17px)
+						+below(sm)
+							display: none
+						&::after
+							content: ''
+							position: absolute
+							bottom: 0px
+							left: 0
+							width: 20%
+							height: 1px
+							background: rgba(255, 255, 255, 0.48)
+				.person-stage
+					width 100%
+					display: flex
+					margin-bottom: 30px
+					&-item
+						display: flex
+						flex-direction: column
+						margin-right: 40px
+						&__title
+							font-family: default-text
+							font-size: rem(32px)
+							+below(xl)
+								font-size: rem(30px)
+						&__text
+							font-family: font4
+							font-size: rem(16px)
+							font-weight: 700
+							color: #666666
+				.call-person
+					margin-top: 20px
+					&__btn
+						padding 10px 30px
+						border-radius: 20px
+						border 1px dashed transparent
+						background #0000cc
+						transition()
+						&:hover
+							border 1px dashed #0000cc
+							color: #fff
+							background: transparent
+	.person-slide-navigation
+		position: relative
+		bottom: 8%
+		height: 20px
+		display: flex
+		justify-content: center
+		align-items: center
+		.swiper-pagination
+			position relative
+			width auto
+			display flex
+			justify-content: center
+			align-items: center
+			&-bullet
+				background def-color
+				opacity: .4
+				margin-right 30px
+				transition(opacity, .35s)
+				.loading-dost
+					size 20px
+					opacity 0
+				&:last-child
+					margin: 0
+				&-active
+					position relative
+					transform: scale(1.5)
+					opacity: 1
+					transition(opacity, .35s)
+					border 1px solid def-color
+					.loading-dost
+						position absolute
+						top: -5.5px
+						left -5.5px
+						opacity 1
+						size 20px
+						margin-bottom 20px
+						transition(opacity, .35s)
+						circle
+							stroke-dasharray 1000
+							stroke-dashoffset 1000
+							animation dash 134s linear alternate infinite
+		.swiper-button-prev
+			width: 70px
+			display: flex
+			align-items: center
+			background: none
+			+below(sm)
+				width: 40px
+			&:hover .swiper-button-prev__icon
+				opacity: 1
+			&__icon
+				size 80px
+				fill #fff
+				opacity: .5
+				transform rotate(180deg)
+				transition(opacity)
+				+below(sm)
+					size 40px
+
+		.swiper-button-next
+			width: 70px
+			display: flex
+			align-items: center
+			background: none
+			+below(sm)
+				width: 40px
+			&:hover .swiper-button-next__icon
+				opacity: 1
+			&__icon
+				size 80px
+				fill #fff
+				opacity: .5
+				transition(opacity)
+				+below(sm)
+					size 40px
+
+.we
+	position: relative
+	+below(md)
+		display: flex
+		flex-direction: column
+	&-intro
+		margin-bottom: 30px
+		font-family: font3
+		font-size: 18px
+		color #000
+	&-video
+		position: absolute
+		top: 0
+		right: 0
+		width: 45%
+		height: 100%
+		padding: 60px
+		display: flex
+		align-items: flex-end
+		background: 50% / cover no-repeat
+		transition(all, .35s, linear)
+		+below(md)
+			position: relative
+			width 100%
+			height: 600px
+		+below(xs)
+			justify-content: center
+
+		&-play
+			position: absolute
+			top calc(50% - 50px)
+			left calc(50% - 50px)
+			size 100px
+			&__icon
+				size 100%
+				fill #fff
+		&-timeline
+			+below(xs)
+				text-align: center
+			&__title
+				font-size: rem(24px)
+				font-family: font4
+			&__rec
+				margin-top: 10px
+				font-size: rem(18px)
+				font-family: font4
+				color: #666666
+
+	.team-human-item
+		width 100%
+		display flex
+		flex-direction column
+		justify-content center
+		margin-bottom: 30px
+		+below(sm)
+			width 100%
+			margin-bottom 30px
+		.team-human-img
+			size 100px
+			margin-bottom 12px
+			border-radius: 50%
+			overflow hidden
+			+below(sm)
+				size 70px
+			&__photo
+				size 100%
+				object-fit: cover
+		.team-human-des
+			display flex
+			flex-direction column
+			justify-content center
+			&__firstname,&__lastname
+				font-family default-text
+				font-size rem(16px)
+				color: def-black
+			&__position
+				margin-top 5px
+				font-family: font3
+				font-size rem(14px)
+				color: def-gray
+
+
+.mission-company
+	width: 100%
+	&-intro
+		font-family: font4
+		font-size: rem(18px)
+		color: #000
+		margin-bottom: 50px
+	&-text
+		font-family: font4
+		font-size: rem(18px)
+		color: #000
+		margin-bottom: 50px
+	&-photo
+		width: 90%
+		height: 100%
+		+below(md)
+			width: 100%
+		&__img
+			size 100%
+			object-fit cover
+	&-pad
+		+below(md)
+			margin-bottom: 30px
+.s-subtitle
+	margin-bottom: 20px
+	line-height: 1
+	font-family: OpenSansExtraBold
+	font-size: rem(24px)
+	color: #000
+
+.experience
+	position: relative
+	width: 100%
+	&::after
+		content: ''
+		position: absolute
+		width: 100%
+		height: 1px
+		background: linear-gradient(90deg,transparent 10%,
+										rgba(255,255,255,.1) 30%,
+										rgba(255,255,255,.2) 50%,
+										rgba(255,255,255,.1) 70%,transparent 90%)
+		+below(md)
+			display: none
+	&-item
+		+below(md)
+			margin-bottom: 30px
+		&__number
+			font-family: default-text
+			font-size: rem(48px)
+			line-height: 1
+		&__title
+			font-family: font4
+			font-size: rem(22px)
+			font-weight: 200
+			color: #666666
+	&-text
+		margin-top:  30px
+		font-family: font4
+		font-size: rem(18px)
+		color: #fff
+		margin-bottom: 50px
+	&-btn-wrap
+		size 100%
+		display: flex
+		align-items: center
+		+below(md)
+			justify-content: center
+		^[0]__btn
+			position relative
+			display inline-block
+			padding 8px 100px 8px 24px
+			border 1px solid #1C1CCB
+			border-radius: 20px
+			font-family default-text
+			font-size rem(14px)
+			color: #fff
+			overflow hidden
+			transition(all, .35s)
+			&:hover
+				padding 8px 24px 8px 24px
+				background #0707c6
+				color def-color
+			&:hover ^[0]-icon
+				fill def-color
+				right -50px
+			^[0]-icon
+				position absolute
+				top 0
+				right 20px
+				width 40px
+				height 40px
+				fill #0707c6
+				transition(all, .35s)
+
+.blog
+	width: 100%
+	&-item
+		display: block
+		width: 100%
+		height: 430px
+		display: block
+		background: #fff
+		transition(all, .25s)
+		margin-bottom: 30px
+		&:hover
+			transform translateY(-10px)
+			box-shadow: 0px 13px 43px -12px rgba(0,0,0,0.45)
+		+below(md)
+			margin-bottom: 30px
+		^[0]-photo
+			position: relative
+			width: 100%
+			height: 57%
+			&__img
+				size 100%
+				object-fit cover
+		^[0]-content
+			width: 100%
+			height: 43%
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			padding: 20px
+			&__title
+				margin-bottom: 5px
+				text-align: center
+				font-family: default-text
+				font-size: rem(18px)
+				color def-black
+			&__subtitle
+				margin-bottom: 20px
+				text-align: center
+				font-family: font3
+				font-size: rem(13px)
+				color: def-black
+			^[0]-down
+				display: flex
+				justify-content: space-between
+				align-items: center
+				&-item
+					display: flex
+				&__icon
+					size 18px
+					margin-right: 5px
+					fill #D1D1D1
+				&__text
+					font-family: font3
+					font-size: rem(13px)
+					font-weight: 200
+					color: def-black
+
+	&-item--no-color
+		position: relative
+		display: flex
+		align-items: flex-end
+		.blog-photo
+			position: absolute
+			top: 0
+			left: 0
+			size 100%
+			&__img
+				size 100%
+				object-fit cover
+		.blog-content
+			position: relative
+			width: 100%
+			display: flex
+			flex-direction: column
+			padding: 20px
+			&__title
+				color #fff
+			&__subtitle
+				color: #fff
+			.blog-down
+				display: flex
+				justify-content: space-between
+				align-items: center
+				&-item
+					display: flex
+				&__icon
+					fill #fff
+				&__text
+					color: #fff
+	&-item--font-black
+		.blog-content
+			&__title
+				color def-black
+			&__subtitle
+				color: def-black
+			.blog-down
+				display: flex
+				justify-content: space-between
+				align-items: center
+				&-item
+					display: flex
+				&__icon
+					fill def-black
+				&__text
+					color: def-black
+	&-item--height-auto
+		height: auto
+		.blog-content
+			&__title
+				text-align left
+			&__subtitle
+				text-align: left
+				margin: 12px 0px
+
+
+.blog-item-full
+	position: relative
+	display: flex
+	align-items: flex-end
+	width: 100%
+	height: 430px
+	background: #fff
+	transition(all, .25s)
+	margin-bottom: 30px
+	&:hover
+		transform translateY(-10px)
+		box-shadow: 0px 13px 43px -12px rgba(0,0,0,0.45)
+	+below(md)
+		margin-bottom: 30px
+
+	.blog-item-full-photo
+		position: absolute
+		top: 0px
+		left: 0px
+		size 100%
+		&__img
+			size 100%
+			object-fit cover
+
+	.blog-item-full-content
+		position: relative
+		width: 100%
+		height: 43%
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		padding: 20px
+		+below(md)
+			height: auto
+		&__title
+			margin-bottom: 5px
+			font-family: default-text
+			font-size: rem(24px)
+			color #fff
+		&__subtitle
+			margin-bottom: 20px
+			font-family: font3
+			font-size: rem(16px)
+			color: #fff
+		.blog-down-full
+			display: flex
+			justify-content: flex-start
+			align-items: center
+			+below(md)
+				justify-content: space-between
+			&__item
+				display: flex
+				margin-right: 30px
+				+below(md)
+					margin: 0
+			&__icon
+				size 18px
+				margin-right: 5px
+				fill #fff
+			&__text
+				font-family: font3
+				font-size: rem(13px)
+				font-weight: 200
+				color: #fff
+
+
+/*
+ 	Страница: Услуги (ед)
+ */
+
+
+.first-sec-bg
+	size 100%
+	background-position: 50% 50%
+	background-size: cover
+	background-repeat: no-repeat
+.first-sec-wrap
+	position: relative
+	size 100%
+	display: flex
+	flex-direction: column
+	margin-bottom: 50px
+	&__top
+		display: flex
+		margin-top: 30px
+
+.first-sec-content
+	margin-top: 20px
+	&__title
+		margin-bottom: 15px
+		line-height: 1
+		font-family: font5
+		font-size: rem(60px)
+		color: #000
+		+below(lg)
+			font-size: rem(50px)
+		+below(md)
+			font-size: rem(40px)
+		+below(sm)
+			font-size: rem(35px)
+	&__intro
+		font-family: font4
+		font-size: rem(20px)
+		color: #000
+		+below(md)
+			font-size: rem(18px)
+	&__call
+		display: inline-block
+		padding: 8px 30px
+		margin: 20px 0px
+		border-radius 40px
+		border 1px dashed #0606C5
+		color: #000
+		transition()
+		&:hover
+			border 1px dashed transparent
+			color: #fff
+			background: #0606C5
+
+.servies-main
+	width: 100%
+	.servies-p
+		&__content
+			position: relative
+			padding-bottom: 30px
+			border-bottom 1px dashed #E4E4E4
+			p
+				padding-bottom 10px
+				font-family: font4
+				font-size: rem(15px)
+				font-weight 600
+				color: #000
+
+.servies-go-project
+	padding: 40px
+	background: #ffffff
+	+below(xs)
+		padding: 20px
+
+
+.servies-menu
+	width: 100%
+	+below(lg)
+		margin-bottom: 50px
+	&__item .servies-submenu
+		display: none
+
+	&__item--active .servies-submenu
+		display: block
+
+	&__link
+		position: relative
+		display: block
+		padding: 15px 0px
+		font-family: font7
+		font-size: rem(20px)
+		color: #000
+		transition()
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: 0
+			width: 100%
+			height: 1px
+			background: linear-gradient(to right,
+			rgba(226,225,225, 1) 40%,
+			rgba(226,225,225, .8) 80%,
+			rgba(226,225,225, 0) 100%)
+		&:hover
+			transform translateX(10px)
+			color #0606C5
+	.servies-submenu
+		width: 100%
+		margin 20px 0px
+		&__item
+			&--active
+				border-left: 5px solid #0606C5
+				background: #fff
+			&:not(.servies-submenu__item--active) .servies-submenu__link:hover
+				transform translateX(10px)
+				color #0606C5
+				&::after
+					display: none
+		&__link
+			position: relative
+			display: block
+			padding: 10px 0px 10px 15px
+			font-family: font4
+			font-size: rem(15px)
+			font-weight 700
+			color: #000
+			transition()
+			&::after
+				content: ''
+				position: absolute
+				bottom: 0
+				left: 0
+				width: 100%
+				height: 1px
+				background: linear-gradient(to right,
+				rgba(226,225,225, 1) 40%,
+				rgba(226,225,225, .8) 80%,
+				rgba(226,225,225, 0) 100%)
+
+.page-inner
+	&-content
+		position: relative
+		width: 100%
+		display: flex
+		flex-direction: column
+		align-items: center
+		&__top
+			width: 100%
+			display: flex
+			justify-content: space-between
+			margin-top: 30px
+			+below(sm)
+				margin-top: 20px
+		^[0]-date
+			color: #000
+		^[0]-title
+			text-align: center
+			margin 20px 0px 15px 0px
+			line-height: 1
+			font-family: font5
+			font-size: rem(60px)
+			color: #000
+			+below(lg)
+				font-size: rem(50px)
+			+below(md)
+				font-size: rem(40px)
+			+below(sm)
+				font-size: rem(35px)
+		^[0]-subtitle
+			width: 80%
+			text-align: center
+			font-family: font4
+			font-size: rem(20px)
+			color: #000
+			+below(md)
+				font-size: rem(18px)
+
+.work-persons
+	width: 100%
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	margin-top: 20px
+	&__title
+		font-family: default-text
+		font-size: rem(16px)
+		color: #000
+		margin-bottom: 10px
+	&__group
+		width: 60%
+		display: flex
+		justify-content: space-around
+		+below(sm)
+			width: 100%
+			flex-wrap: wrap
+			margin-top 10px
+
+.work-persons__item
+	width auto
+	display flex
+	flex-direction column
+	justify-content center
+	align-items: center
+	+below(sm)
+		width: 50%
+		margin-bottom 30px
+	.work-persons-img
+		size 80px
+		margin-bottom 12px
+		border-radius: 50%
+		overflow hidden
+		+below(sm)
+			size 70px
+		&__photo
+			size 100%
+			object-fit: cover
+	.work-persons-des
+		display flex
+		flex-direction column
+		justify-content center
+		&__firstname,&__lastname
+			text-align: center
+			font-family default-text
+			font-size rem(16px)
+			color: def-black
+		&__position
+			text-align: center
+			margin-top 5px
+			font-family: font3
+			font-size rem(14px)
+			color: def-gray
+
+.page-inner--bg
+	position: relative
+	height: 100%
+	background: 50% 50% / cover no-repeat
+	padding-bottom: 50px
+	+below(sm)
+		height:100%
+	&::before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		size 100%
+		background: rgba(0,0,0, .55)
+	.page-inner-content
+		position: relative
+		.page-inner-title
+			margin-top: 5%
+			color: #fff
+			+below(sm)
+				margin-top: 10%
+				font-size: rem(25px)
+		.page-inner-subtitle
+			color: #fff
+			font-size: rem(16px)
+		&__top
+			.page-inner-date
+				color: #fff
+
+				
+.work-board
+	&-img
+		width: 100%
+		height: auto
+		border-radius 7px
+
+
+.ya-share2__container
+	display: flex
+	justify-content: flex-end
+	+below(767px)
+		justify-content: flex-start
+		margin 20px 0px
+
+
+
+.blog-page
+	height: 50vh
+
+.blog-main
+	width: 100%
+
+.blog-info
+	display: flex
+	&-item
+		display: flex
+		align-items: center
+		&:first-child
+			margin-right: 15px
+		&__icon
+			size 18px
+			margin-right 5px
+			fill #CDCDCD
+		&__text
+			position: relative
+			top: 2px
+			line-height 1
+			padding-bottom 4px
+			font-size: rem(14px)
+			color: #333333
+			border-bottom 1px solid #CDCDCD
+
+.blog-content-wrap
+	width: 80%
+	+below(md)
+		width: 100%
+
+.blog-text
+	padding-bottom: 30px
+	border-bottom 1px dashed #E4E4E4
+	p
+		padding-bottom 10px
+		font-family: font4
+		font-size: rem(15px)
+		font-weight 600
+		color: #000
+.blog-content
+	display: flex
+
+
+
+// СТРАНИЦА КОНТАКТЫ
+
+.contacts
+	padding-bottom: 50px
+
+.contacts-head
+	height: 300px
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+
+.contacts-title
+	text-align: center
+	margin 20px 0px 15px 0px
+	line-height: 1
+	font-family: font5
+	font-size: rem(60px)
+	color: #000
+	+below(lg)
+		font-size: rem(50px)
+	+below(md)
+		font-size: rem(40px)
+	+below(sm)
+		font-size: rem(35px)
+
+.contacts-subtitle
+	width: 80%
+	text-align: center
+	font-family: font4
+	font-size: rem(20px)
+	color: #000
+	+below(md)
+		font-size: rem(18px)
+
+.contacts-bg
+	width: 100%
+	height: 250px
+	border-radius 7px
+	overflow: hidden
+	&__img
+		size 100%
+		object-fit cover
+
+.contacts-date
+	margin-top:  50px
+
+.contacts-d
+	+below(sm)
+		margin-bottom: 30px
+	&__title
+		font-family: default-text
+		font-size: rem(18px)
+		color #000
+		margin-bottom: 10px
+	&__sub
+		line-height: 1.2
+		font-family:  default-text
+		font-size: rem(30px)
+		color: #000
+		transition()
+		+below(sm)
+			font-size: rem(26px)
+		&:hover
+			color #000
+		&--email
+			border-bottom 1px dashed #999999
+			&:hover
+				border-bottom 1px dashed transparent
+		&--address
+			font-size: rem(20px)
+			margin-bottom: 10px
+	&__map
+		display: flex
+		align-items: center
+		font-family: font3
+		color: #999999
+		font-size: rem(16px)
+		&:hover
+			color: #999999
+	&__icon
+		size 17px
+		margin-left: 5px
+		fill #999999
+
+.contcats-social
+	&__title
+		font-family: default-text
+		font-size: rem(18px)
+		color: #000
+		margin: 30px 0px
+		+below(sm)
+			margin: 10px 0px 20px 0px
+	&-items
+		display: flex
+	&-item
+		display: flex
+		align-items: center
+		&-img
+			size 40px
+			&__icon
+				size 100%
+		&-title
+			font-family: default-text
+			font-size: rem(18px)
+			color: #000
+			margin-left: 15px
+
+
+/* СТРАНИЦА РАБОТЫ */
+
+
+.about-works
+	&__title
+		line-height: 1.2
+		margin-bottom: 10px
+		font-family font5
+		font-size rem(60px)
+		color: #000
+		+below(sm)
+			font-size: rem(40px)
+	&__intro
+		font-family: font4
+		font-size: rem(16px)
+		color: #000
+
+
+.about-works-exp
+	display flex
+	justify-content space-between
+	align-items center
+	width 95%
+	margin-top: 15px
+	+below(md)
+		width 100%
+		margin-bottom 30px
+	+below(sm)
+		flex-wrap: wrap
+	&-item
+		display flex
+		align-items: flex-end
+		+below(sm)
+			width 100%
+			margin-bottom 30px
+		&__number
+			line-height 1
+			font-family font5
+			font-size rem(40px)
+			color: def-black
+		&__text
+			font-family default-text
+			font-size rem(18px)
+			color: def-black
+			margin-left:10px
+	&-btn
+		margin-top: 30px
+
+
+
+/* СТРАНИЦА БЛОГ */
+
+
+
+.blogs
+	&__title
+		line-height: 1.2
+		text-align: center
+		margin-bottom: 10px
+		font-family font5
+		font-size rem(60px)
+		color: #000
+		+below(sm)
+			font-size: rem(40px)
+	&__intro
+		display: flex
+		justify-content: center
+		p
+			text-align: center
+			font-family: font4
+			font-size: rem(16px)
+			color: #000
+
+.blogs-authors
+	display: flex
+	flex-direction: column
+	align-items: center
+
+.blogs-authors__title
+	font-family: default-text
+	font-size: rem(16px)
+	color: #000
+	+below(sm)
+		font-size: rem(31px)
+		margin-bottom 10px
+
+.blogs-authors-items
+	width 90%
+	display flex
+	justify-content: center
+	margin-top: 10px
+	+below(md)
+		width 100%
+		margin-bottom 30px
+	+below(sm)
+		flex-wrap: wrap
+
+.blogs-authors-item
+	display flex
+	flex-direction column
+	justify-content center
+	align-items center
+	&:not(:last-child)
+		margin-right: 50px
+	&:first-child .blogs-authors-item-des
+		text-align: left
+	&:last-child
+		align-items: flex-end
+		.blogs-authors-item-des
+			text-align: right
+	+below(sm)
+		width 50%
+		margin-bottom 30px
+		&:not(:last-child)
+			margin-right: 0
+			text-align: center
+		&:first-child .blogs-authors-item-des
+			text-align center
+		&:last-child
+			text-align: center
+			align-items: center
+			.blogs-authors-item-des
+				text-align: center
+
+
+.blogs-authors-item-img
+	size 90px
+	margin-bottom 12px
+	border-radius: 50%
+	overflow hidden
+	&__photo
+		size 100%
+		object-fit: cover
+	+below(sm)
+		size 120px
+
+.blogs-authors-item-des
+	position relative
+	left 0
+	display flex
+	flex-direction column
+	justify-content center
+	text-align: center
+	&__position
+		margin-top 5px
+		font-family: font3
+		font-size rem(14px)
+		color: def-gray
+	&__firstname,&__lastname
+		font-family default-text
+		font-size rem(16px)
+		color: def-black
+
+
+
+/* СТРАНИЦА УСЛУГИ */
+
+
+
+.servies
+	&__title
+		line-height: 1.2
+		text-align: center
+		margin-bottom: 10px
+		font-family font5
+		font-size rem(60px)
+		color: #000
+		+below(sm)
+			font-size: rem(40px)
+	&__intro
+		display: flex
+		justify-content: center
+		p
+			text-align: center
+			font-family: font4
+			font-size: rem(16px)
+			color: #000
+
+.serives-bg
+	width: 100%
+	height: 250px
+	margin-top: 50px
+	border-radius 7px
+	overflow: hidden
+	&__img
+		size 100%
+		object-fit cover
+
+.servies-item-header
+	padding: 25px 25px 15px 25px
+
+.servies-item
+	position relative
+	display flex
+	flex-direction: column
+	margin-bottom 20px
+	background def-color
+	overflow hidden
+
+	.servies-img
+		size 50px
+		margin-bottom 60px
+		+below(sm)
+			margin-bottom: 30px
+		&__icon
+			size 100%
+	.servies-des
+		position relative
+		color: #000
+		&__title
+			font-family default-text
+			font-size rem(17px)
+			transition(color, .65s)
+			transition-delay: .10s
+		&__text
+			font-family font3
+			font-size rem(13px)
+			color: def-gray
+			transition(color, .55s)
+			transition-delay: .15s
+
+
+
+.servies-m
+	width: 100%
+	margin-top: 10px
+
+.servies-m__item
+	width: 100%
+	padding 0px 25px
+	overflow: hidden
+	&:last-child .servies-m__link::after
+		display: none
+	&:hover .servies-m__link::before
+		transform translateY(0)
+
+.servies-m__link
+	position: relative
+	display: block
+	padding: 15px 0px
+	font-family: font3
+	font-size:  rem(15px)
+	color: #000
+	transition()
+	&::before
+		content: ''
+		position: absolute
+		top: 0
+		left: -25px
+		height: 100%
+		width: 2px
+		background: #0606C5
+		transform translateY(-100%)
+		transition()
+	&::after
+		content: ''
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		height: 1px
+		background: linear-gradient(to right,
+		rgba(226,225,225, 1) 40%,
+		rgba(226,225,225, .8) 80%,
+		rgba(226,225,225, 0) 100%)
+	&:hover
+		color: #999999
+.qq-uploader
+	padding-top 15px
+
+.qq-upload-button
+	position relative
+	width auto !important
+	display inline-block
+	margin-right 35px !important
+	padding 7px 18px 7px 35px !important
+	border-radius: 30px !important
+	border 1px dashed #B7B7B7 !important
+	font-size rem(14px) !important
+	color: def-black !important
+	background transparent !important
+	&::after
+		position absolute
+		content ''
+		left 9px
+		top 9px
+		size 20px
+		background-image url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNzkyIDc5MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNzkyIDc5MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik01NTIuMDYxLDIyOS4xMThjLTEzLjY4NSwwLTI0LjcyMywxMC41OTUtMjQuNzIzLDI0LjI5djM1OC45MTFjMCwzNi42NDYtMTMuMjQyLDY2LjY2Mi0zOC44NTEsOTIuMjcxICAgcy01Ni4wNjcsMzguODUxLTkzLjE0NiwzOC44NTFjLTM2LjIwNCwwLTY3LjEwNS0xMi44LTkyLjcxMy0zOC40MDhjLTI1LjYwOC0yNS42MDctMzguNDA4LTU2LjUwOS0zOC40MDgtOTIuNzEzVjQ3Ni43OXYtNzIuMzk4ICAgVjIyNi4wMjl2LTg1LjY0di0wLjg4NnYtMC44ODVjMC0yNC4yOCw4LjkzOC00NS4zNTgsMjYuMDUxLTYyLjY4OGMxNy4zMy0xNy41NDYsMzguMzk4LTI2LjkyNyw2My41NzMtMjYuOTI3ICAgYzI1LjE2NiwwLDQ2LjI0NCw5LjM4MSw2My41NjMsMjYuOTI3YzE3LjExMywxNy4zMywyNi4wNTIsMzguNDA4LDI2LjA1Miw2Mi42ODh2MC44ODV2MS43NjJ2NDAwLjQyNyAgIGMwLDI1LjE1Ni0xOS40MjEsNDQuNTg2LTQ0LjU4Niw0NC41ODZjLTI0LjI4MSwwLTQ0LjE1My0yMC4zMDYtNDQuMTUzLTQ0LjU4NlYzMzEuOTg0YzAtMTMuNjg1LTEwLjU5Ni0yNC4yOC0yNC4yOC0yNC4yOCAgIHMtMjQuMjgsMTAuNTk1LTI0LjI4LDI0LjI4djIwOS43MDhjMCwyNi4wNDEsOC44MzQsNDguMTE3LDI2LjkyNyw2Ni4yMmMxOC4xMDIsMTguMTAyLDM5LjczNiwyNi45MjcsNjUuNzg3LDI2LjkyNyAgIGMyNi4wNDEsMCw0Ny45LTkuMDUxLDY2LjIxOS0yNi45MjdjMTcuODg2LTE3LjQ1MiwyNi45MjgtMzkuMjkzLDI2LjkyOC02Ni4yMlYxMzkuNTAzdi0wLjg4NSAgIGMwLTM3Ljk2NS0xMy43OTgtNzAuNTI0LTQwLjYxMi05Ny41NjRDNDI0LjM2OCwxMy43ODgsMzkxLjgwOSwwLDM1My44NDQsMGMtMzcuOTc0LDAtNzAuNTMzLDEzLjc4OC05Ny41NzMsNDEuMDU0ICAgYy0yNi44MTMsMjcuMDQtNDAuNjExLDU5LjU5OS00MC42MTEsOTcuNTY0djAuODg1djg2LjUyNnYxNzguMzYzdjcyLjM5OHYxMzUuNTI4YzAsNDkuODg5LDE3LjY1OSw5Mi4yNzEsNTIuNTM1LDEyNy4xNDYgICBTMzQ1LjQ1Miw3OTIsMzk1LjM0MSw3OTJzOTMuMTQ2LTE2Ljc3MywxMjguNDY1LTUyLjA5M2MzNS4zMTgtMzUuMzE4LDUyLjUzNS03OC41NzYsNTIuNTM1LTEyNy41ODlWMjUzLjQwOCAgIEM1NzYuMzQxLDIzOS43MTMsNTY1Ljc0NSwyMjkuMTE4LDU1Mi4wNjEsMjI5LjExOHoiIGZpbGw9IiNiN2I3YjciLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K')
+		background-repeat no-repeat
+		background-size 20px
+		background-position  50% 50%
+
+.qq-clear-button
+	position relative
+	width auto !important
+	display inline-block
+	margin-right 35px !important
+	padding 7px 18px !important
+	border-radius: 30px !important
+	border 1px dashed #B7B7B7 !important
+	font-size rem(14px) !important
+	color: def-black !important
+	background transparent  !important
+
+#jGrowl
+	z-index 99999
+
+#pdopage
+	width 100%

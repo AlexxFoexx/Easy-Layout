@@ -1,0 +1,86 @@
+extends ../layout/default.pug
+block append vars
+    - var headerMenu = 1
+    - var title = 'Портфолио'
+block header-content
+
+
+block content
+    sectiom.work-person
+            .container
+                .row
+                    .col-12
+                        .page-inner-content
+                            .page-inner-content__top
+
+                                .breadcrumbs
+                                    a(href="#").breadcrumbs__link Портфолио
+                                    span.breadcrumbs__separator /
+                                .page-inner-date
+                                    span.page-inners-date__number 29 сентября
+
+                            h1.page-inner-title Брендинг для мебельной компании Арзан
+                            p.page-inner-subtitle Задача организации, в особенности же постоянное информационное и пропагандистское обеспечение.
+
+                            .work-persons
+                                h2.work-persons__title Над проектом  работали
+                                .work-persons__group
+                                    .work-persons__item
+                                        .work-persons-img
+                                            img(src="./img/Rustam.jpg", alt="").work-persons-img__photo
+                                        .work-persons-des
+                                            span.work-persons-des__firstname Руслан
+                                            span.work-persons-des__lastname Ахмадуллин
+                                            span.work-persons-des__position Управляющий
+                                    .work-persons__item
+                                        .work-persons-img
+                                            img(src="./img/Rustam.jpg", alt="").work-persons-img__photo
+                                        .work-persons-des
+                                            span.work-persons-des__firstname Руслан
+                                            span.work-persons-des__lastname Ахмадуллин
+                                            span.work-persons-des__position Управляющий
+                                    .work-persons__item
+                                        .work-persons-img
+                                            img(src="./img/Rustam.jpg", alt="").work-persons-img__photo
+                                        .work-persons-des
+                                            span.work-persons-des__firstname Рамиль
+                                            span.work-persons-des__lastname Ахмадуллин
+                                            span.work-persons-des__position Редактор
+                                    .work-persons__item
+                                        .work-persons-img
+                                            img(src="./img/Rustam.jpg", alt="").work-persons-img__photo
+                                        .work-persons-des
+                                            span.work-persons-des__firstname Александр
+                                            span.work-persons-des__lastname Жуков
+                                            span.work-persons-des__position Разработчик
+    section.s-pad.work-board
+        .container
+            .row
+                .col-12
+                    img(src="./img/work.jpg").work-board-img
+
+    section.s-pad.other-works
+        .container
+            .row
+                .col-sm-12.col-md-6
+                    h2.s-title.s-title--noffset Похожие работы
+                .col-sm-12.col-md-6
+                    | <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                    | <script src="//yastatic.net/share2/share.js"></script>
+                    | <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,gplus,lj,viber,whatsapp,telegram"></div>
+                .col-12
+                    .project-veiw-items.project-veiw-items--row
+                        a(href="#" style="background: #00B7F4").project-view.project-view--row
+                            h3.project-view__name Тортунио
+                            .project-view-des
+                                p.project-view-des__develop Разработка упаковки для <br> кондитерской
+                                .project-view-small
+                                    span.project-view-small__date Февраль, 2018
+                                    span.project-view-small__tags Брендинг, сайт, маркетинг
+                        a(href="#" style="background-image: url('../img/project-2.jpg')").project-view.project-view--row.project-view--bg.project-view--border
+                            h3.project-view__name.project-view__name--color British Petroleum
+                            .project-view-des
+                                p.project-view-des__develop.project-view-des__develop--color Брендинг для федеральной бухгалтерской компании
+                                .project-view-small
+                                    span.project-view-small__datespan.project-view-small__date--color Февраль, 2018
+                                    span.project-view-small__tags.project-view-small__tags--color Брендинг, сайт, маркетинг

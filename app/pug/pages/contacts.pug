@@ -1,0 +1,51 @@
+extends ../layout/default.pug
+block append vars
+    - var headerMenu = 1
+    - var title = 'Контакты'
+
+block content
+    section.contacts
+        .container
+            .row
+                .col-12
+                    .contacts-head
+                        h1.contacts-title Контактная информация
+                        p.contacts-subtitle Задача организации, в особенности же постоянное информационное и пропагандистское обеспечение.
+                .col-12
+                    .contacts-bg
+                        img(src="./img/contacts.jpg" alt="Контактная информация").contacts-bg__img
+
+                .col-12
+                    .contacts-date
+                        .row
+                            .col-sm-12.col-md-4
+                                .contacts-d
+                                    .contacts-d__title Телефон для связи
+                                    a(href="tel:+7 927 300 9216").contacts-d__sub +7 927 300 9216
+                            .col-sm-12.col-md-4
+                                .contacts-d
+                                    .contacts-d__title Электронная почта
+                                    a(href="mailto:mail@sooom.ru").contacts-d__sub.contacts-d__sub--email mail@sooom.ru
+
+                            .col-sm-12.col-md-4
+                                .contacts-d
+                                    .contacts-d__title Адрес офиса
+                                    .contacts-d__sub.contacts-d__sub--address г. Уфа, ул. Верхнеторговая площадь, 4, 295
+                                    a(href="").contacts-d__map Посмотреть на яндекс картах
+                                        svg.contacts-d__icon
+                                            use(xlink:href="./img/sprite.svg#icon-link")
+                .col-12
+                    .contcats-social
+                        h2.contcats-social__title Социальные сети
+                .col-6.col-sm-6.col-md-3.col-lg-2
+                    .contcats-social-item
+                        .contcats-social-item-img
+                            img(src="./img/behance.svg").contcats-social-item-img__icon
+                        .contcats-social-item-title Behance
+                .col-6.col-sm-6.col-md-3.col-lg-2
+                    .contcats-social-item
+                        .contcats-social-item-img
+                            img(src="./img/dribbble.svg").contcats-social-item-img__icon
+                        .contcats-social-item-title Dribbble
+
+

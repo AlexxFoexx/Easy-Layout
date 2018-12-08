@@ -1,19 +1,251 @@
+block vars
+	- var headerMenu = 0;
+	- var title = 'Страница'
+
 doctype html
 html(lang="ru")
-  head
-    meta(charset="utf-8")
-    base(href="/")
-    title project
-    meta(name="description", content="")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
-    link(rel="icon", href="./img/icon/favicon.ico")
-    link(rel="apple-touch-icon", sizes="180x180", href="img/favicon/apple-touch-icon-180x180.png")
-    meta(name="theme-color", content="#000")
-    block links
-    link(rel="stylesheet", href="./css/vendor.min.css")
-    link(rel="stylesheet", href="./css/main.min.css")
-  body
-    block content
-  script(src="./js/vendor.min.js")
-  script(src="./js/common.min.js")
+	head
+		meta(charset="utf-8")
+		base(href="/")
+		title= title
+		meta(name="description", content="")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+		link(rel="icon", href="./img/icon/favicon.ico")
+		link(rel="apple-touch-icon", sizes="180x180", href="img/favicon/apple-touch-icon-180x180.png")
+		meta(name="theme-color", content="#000")
+		block links
+		link(rel="stylesheet", href="./css/vendor.min.css")
+		link(rel="stylesheet", href="./css/main.min.css")
+		
+	body
+		header.header
+			if headerMenu == 0
+				.header-menu
+					.container
+						.row.d-flex.align-items-center
+							.col-4.col-sm-4.col-md-2.col-lg-2.col-xl-2
+								a(href="/").logo-wrap
+									img(src="./img/logo.png", alt="").logo
+							.col-8.col-sm-8.col-md-10.col-lg-9.offset-lg-1.col-xl-9.offset-xl-1.d-flex.justify-content-end.align-items-center
+								nav.h-nav-items
+									ul.h-nav
+										li.h-nav-item
+											a(href="#").h-nav__link.h-nav__link--active Студия
+										li.h-nav-item
+											a(href="#").h-nav__link Портфолио
+										li.h-nav-item
+											a(href="#").h-nav__link Услуги
+										li.h-nav-item
+											a(href="#").h-nav__link «Вода»
+										li.h-nav-item
+											a(href="#").h-nav__link Showreel
+
+
+								a(href="javascript" data-fancybox data-src="#startProject").start-project-btn Начать проект
+
+								.btn-m-menu
+									span.btn-m-menu__dot
+			else
+				.header-menu.header-menu--nopos
+					.container
+						.row.d-flex.align-items-center
+							.col-4.col-sm-4.col-md-2.col-lg-2.col-xl-2
+								a(href="/").logo-wrap
+									img(src="./img/logo.png", alt="").logo
+							.col-8.col-sm-8.col-md-10.col-lg-9.offset-lg-1.col-xl-9.offset-xl-1.d-flex.justify-content-end.align-items-center
+								nav.h-nav
+									li.h-nav-item.h-nav-item--current
+										a(href="#").h-nav__link.h-nav__link--active Студия
+									li.h-nav-item
+										a(href="#").h-nav__link Портфолио
+									li.h-nav-item
+										a(href="#").h-nav__link Услуги
+									li.h-nav-item
+										a(href="#").h-nav__link «Вода»
+									li.h-nav-item
+										a(href="#").h-nav__link Showreel
+										svg.showreel-icon
+											use(xlink:href="./img/sprite.svg#icon-play")
+
+								a(href="javascript" data-fancybox data-src="#startProject").start-project-btn Начать проект
+
+								.btn-m-menu
+									span.btn-m-menu__dot
+
+			block header-content
+
+			if headerMenu == 0
+				.header-links
+					.container
+						.row
+							.col-1
+								.lang
+									a(href="#rus").lang-btn.active Рус
+									span.lang-sep /
+									a(href="#rus").lang-btn Eng
+							.col-8
+								.social
+									.social-links
+										a(href="#").social-item
+											img(src="./img/behance.svg", alt="").social-item__img
+										a(href="#").social-item
+											img(src="./img/dribbble.svg", alt="").social-item__img
+									a(href="#").contacts-details Контактная информация
+
+							.col-3
+								.phone
+									span.phone-text тел.
+									a(href="tel:8800353555").phone-number +7 927 300 9216
+			else
+
+		main
+			block content
+		
+		footer.s-pad.footer
+			.container
+				.row
+					.col-12.col-sm-12.col-md-3.col-lg-3.col-xl-3
+						.footer-mail
+							span.footer-email hello@sooom.ru
+							span.footer-text Электронная почта
+					.col-12.col-sm-12.col-md-4.col-lg-4.col-xl-4.offset-md-1.offset-lg-1.offset-xl-1
+						.address
+							.address-img
+								img(src="./img/adr.svg", alt="").address-img__icon
+							.address-des
+								address.address-des__title г. Уфа, ул. Верхнеторговая площадь, 4, 295
+								small.address-des__subtitle Адрес в Республике Башкортостан
+					.col-12.col-sm-12.col-md-4.col-lg-4.col-xl-4 
+						.address
+							.address-img
+								img(src="./img/adr.svg", alt="").address-img__icon
+							.address-des
+								address.address-des__title г. Москва, ул. Уличный перекресток, 215, 77
+								small.address-des__subtitle Адрес фелиала
+				.row
+					.col-12.col-sm-12.col-md-12.col-lg-4.col-xl-4
+						.studio
+							.studio-title Студия Сом
+							a(href="javascript:;" data-fancybox data-src="#conf").studio-polytics Политика конфиденциальности
+							a(href="javascript:;" data-fancybox data-src="#processing").studio-personal-data Условия обработки персональных данных
+					.col-12.col-sm-12.col-md-12.col-lg-8.col-xl-8
+						nav.footer-nav
+							a(href="#").footer-nav__link Дизайн
+							a(href="#").footer-nav__link Разработка
+							a(href="#").footer-nav__link Аналитика
+							a(href="#").footer-nav__link Реклама и SMM
+							a(href="#").footer-nav__link Видеосъемка
+							a(href="#").footer-nav__link Маркетинг
+		
+		.hidden
+			form.modal-form#consulatation-form
+				.modal-form-head
+					h3.modal-form-head__title Связаться с специалистом
+					span.modal-form-head__person
+				fieldset.modal-form-group
+					label(for="name").modal-form-group__label Ваше имя
+					input(type="text" name="name").modal-form-group__input
+				fieldset.modal-form-group
+					label(for="phone").modal-form-group__label Ваш телефон
+					input(type="text" name="phone").modal-form-group__input
+				fieldset.modal-form-group
+					label(for="email").modal-form-group__label Email
+					input(type="text" name="email").modal-form-group__input
+				input(type="hidden" name="spec" value="")#person
+				.modal-form-btn-wrap
+					button.modal-form-btn Отправить
+
+			.modal-form-full#startProject
+				.container
+					.row
+						.col-12
+							.breadcrumbs
+								a(href="#").breadcrumbs__link Контактная информация
+							.start-project-header
+
+								h2.start-project-title Начать проект
+								.start-project-links
+									a(href="tel:+7 927 300 9216").start-project-number +7 927 300 9216
+									.modal-close#modalClose
+										span.modal-close__text Отмена
+										svg.modal-close__icon
+											use(xlink:href="./img/sprite.svg#icon-cancel")
+					.row
+						.col-12.col-sm-12.col-md-12.col-lg-8.col-xl-8
+							form.start-form
+								h3.start-form-title Контактные данные
+								.start-form-group-line
+									fieldset.start-form-group#animateGroup
+											label(for="name").start-form-group__label Ваше имя*
+											input(type="text", name="name").start-form-group__input
+									fieldset.start-form-group
+											label(for="name-company").start-form-group__label Название компании
+											input(type="text", name="name-company").start-form-group__input
+								.start-form-group-line
+									fieldset.start-form-group
+											label(for="phone").start-form-group__label Телефон*
+											input(type="text", name="phone").start-form-group__input
+									fieldset.start-form-group
+											label(for="email").start-form-group__label Электронная почта
+											input(type="text", name="email").start-form-group__input
+								.start-form-about
+									span.start-form-about-title О проекте
+									fieldset.start-form-group
+										label(for="about-project").start-form-group__label Краткое описание проекта 
+										input(type="text", name="about-project").start-form-group__input
+									fieldset.files-up
+										span.file Прикрепить файлы
+										span.file-text например изображения или документы при необходимости
+								
+								button(type="submit").start-form-submit Отправить
+								.conf-and-polytics
+									|Нажимая на кнопку, вы даете согласие на 
+									a(href="#").conf-and-polytics__item обработку персональных данных 
+									|и соглашаетесь с 
+									a(href="#").conf-and-polytics__item политикой конфиденциальности.
+
+			.modal-form.modal-form-conf#conf
+				.modal-form-head
+					h3.modal-form-head__title Политика конфиденциальности
+				.modal-form-conf-text
+					p <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda atque, culpa earum eligendi eveniet ex excepturi facilis labore libero obcaecati omnis perferendis quidem quod reiciendis rem suscipit totam vero.</span><span>Ab adipisci amet asperiores assumenda autem beatae consequuntur deleniti dolorum earum eius eos error fugiat ipsa minima, molestiae molestias quos recusandae soluta ullam veniam. Alias atque dignissimos doloribus eveniet nam.</span><span>Architecto assumenda aut hic impedit maxime nihil quae quisquam reiciendis. Atque deleniti, dicta explicabo mollitia reprehenderit tenetur vel veritatis. Ducimus expedita illo ipsa nam quae quam similique? Placeat, quia repellendus.</span><span>Illum ipsa ratione repudiandae tenetur unde. A aperiam dolore dolores eligendi eos incidunt inventore laboriosam laudantium libero natus, necessitatibus porro quas ratione recusandae saepe suscipit totam velit vero voluptate voluptates!</span><span>Adipisci commodi excepturi fugiat nam necessitatibus nihil odit ratione repellat, saepe? Commodi ex explicabo mollitia ratione repudiandae vel. A alias blanditiis culpa iste itaque nam nulla perferendis quia ratione voluptatem?</span><span>Ad adipisci distinctio, esse laboriosam nisi placeat repellendus? Aut eaque, est fuga hic incidunt, maiores minus natus obcaecati, quas quidem quis sed sit voluptates? Consectetur eligendi excepturi nulla officia veritatis?</span><span>Doloribus eius magni minus modi molestiae nam neque nulla rerum soluta? Debitis deserunt dignissimos, dolorem enim error, illo ipsum laudantium minima necessitatibus perferendis quaerat quasi quo rerum soluta veritatis voluptate?</span><span>Dicta fuga illum in incidunt molestiae nisi perferendis voluptatum. Accusamus culpa, deserunt dicta dolor dolores fugit illum perspiciatis voluptates. Beatae dicta earum excepturi, molestias quos ratione reiciendis. Aperiam, laudantium, similique.</span><span>Amet aspernatur deserunt eaque, ex facilis, fugiat impedit, incidunt ipsum itaque maiores nam necessitatibus nisi similique vero voluptate. Ab animi enim esse ex expedita libero nihil odit perferendis porro rem?</span><span>Beatae, in iure nam nemo nobis quibusdam reiciendis vel vero. Asperiores molestiae nostrum quia quod voluptas. Assumenda autem, ducimus enim esse, expedita fugit hic iure nemo perspiciatis recusandae repudiandae tempora.</span>
+
+			.modal-form.modal-form-processing#processing
+				.modal-form-head
+					h3.modal-form-head__title Условия обработки персональных данных
+				.modal-form-processing-text
+					p <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, aliquam aut cumque deleniti dolor earum est et excepturi fuga ipsa molestiae nobis officiis omnis optio, rerum, sed tempore voluptates voluptatibus.</span><span>Consectetur corporis facere minima molestiae numquam perspiciatis placeat. Neque, nostrum, perspiciatis? Accusantium, blanditiis deleniti dolore eos fuga illo ipsa ipsum numquam optio quidem reiciendis repellendus similique sint sit ut, vel?</span><span>Consequatur culpa cumque debitis dolor dolorem ducimus id quis quos saepe tempora! Eligendi facere itaque laudantium magni officiis voluptas? Delectus eligendi facere laudantium minima natus, perferendis sunt? Impedit, sequi suscipit.</span><span>Deleniti eaque modi qui quos repellat. Alias corporis dolores eaque esse quam voluptatibus. Molestias odit, repellat rerum soluta vitae voluptatibus. Accusantium earum harum iure nulla rem sint tenetur, vel velit.</span><span>Architecto dicta exercitationem ipsa odio pariatur provident sit temporibus? Accusantium aliquid animi atque consequatur expedita fuga fugiat illo, impedit, ipsum, laudantium neque officiis perspiciatis provident quidem quis saepe sed sequi.</span>
+		.m-menu
+			.m-menu-header
+				.m-menu-header__top
+					.lang
+						a(href="#").lang__link.lang__link--active рус
+						span.lang-sep /
+						a(href="#").lang__link en
+					.btn-m-menu
+						span.btn-m-menu__dot
+				a(href="#").m-menu-header__call
+					span.m-menu-phone тел.
+					span.m-menu-phone__number +7 927 300 9216
+			nav.m-menu-nav
+				a(href="#").m-menu-nav__link Студия
+				a(href="#").m-menu-nav__link Портфолио
+				a(href="#").m-menu-nav__link Услуги
+				a(href="#").m-menu-nav__link Вода
+				a(href="#").m-menu-nav__link Контактная информация
+
+			.m-menu-footer
+				a(href="#").m-showrel
+					span.m-showrel__text Showreel
+					svg.m-showrel-icon
+						use(xlink:href="./img/sprite.svg#icon-play")
+				.m-portfolio
+					a(href="#").m-portfolio__link
+						img(src="./img/behance.svg").m-portfolio-img
+
+					a(href="#").m-portfolio__link
+						img(src="./img/dribbble.svg").m-portfolio-img
+											
+	script(src="./js/vendor.min.js")
+	script(src="./js/common.min.js")
